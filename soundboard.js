@@ -16,11 +16,7 @@
 */
 (function( window ) {
     var defaults = {
-            channels: 4,
-            // jQuery or underscore
-            extend: window.jQuery && window.jQuery.extend ||
-                    window._ && window._.extend ||
-                    undefined
+            channels: 4
         },
         sb = function( config ) {
            return new sb.pt.init( config );
@@ -29,7 +25,9 @@
     sb.pt = sb.prototype = {
         constructor: "SoundBoard",
         init: function( config ) {
-            var settings = this.settings = _.extend( {}, defaults, config ),
+            var extend = window.jQuery && window.jQuery.extend || 
+                           window._ && window._.extend || config.extend,
+                settings = this.settings = extend( {}, defaults, config ),
                 channels = [],
                 i = 0;
             // create the channels for this soundboard
