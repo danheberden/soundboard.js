@@ -53,7 +53,7 @@
             // get an available channel
             while( i < this.channels.length ) {
                 if ( !this.channels[i].playing ) {
-                  var ch = this.channels[ i++ ];
+                  var ch = this.channels[ i ];
                   ch.playing = true;
                   ch.element.currentTime = clip.start;
                   ch.element.play();
@@ -63,6 +63,7 @@
                   }, (clip.end - clip.start ) * 1000 );
                   break; // we played, dont try anymore
                 }
+                i++;
             }
         },
 
